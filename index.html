@@ -3,39 +3,43 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Web Kuliah</title>
-    <link rel="stylesheet" href="style.css">
+    <title>Upload Materi Kuliah</title>
+    <link rel="stylesheet" href="index.css">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet">
 </head>
 <body>
-    <div class="main">
-        <div class="navbar">
-            <div class="logo">
-                <h2>LearnSync</h2>
-            </div>
-            <div class="menu">
-                <ul>
-                    <li><a href="#">Beranda</a></li>
-                    <li><a href="#">Fitur</a></li>
-                    <li><a href="#">Kontak</a></li>
-                </ul>
-            </div>
-            <div class="login">
-                <ul>
-                    <li><a   href="#">Daftar</a></li>
-                    <li><a   href="#">Masuk</a></li>
-                </ul>
-            </div>
-            </div>
-
-            <div class="content">
-                <h1>Belajar Tanpa Batas <br><span>Raih Masa Depan</span></h1>
-
-                <p class="par">LearnSync hadir untuk mendukung perjalanan belajar anda <br> dengan menyediakan akses tanpa batas ke berbagai materi edukatif, <br> kapan saja dan di mana saja</p>
-
-                <button class="cn"><a href="#">JELAJAHI SEKARANG</a></button>
+    <div class="container mt-5">
+        <h2 class="text-center">Upload Materi Kuliah</h2>
+        <div class="row justify-content-center">
+            <div class="col-md-6">
+                <form id="uploadForm" action="/upload" method="POST" enctype="multipart/form-data">
+                    <div class="mb-3">
+                        <label for="title" class="form-label">Judul Materi</label>
+                        <input type="text" class="form-control" id="title" name="title" required>
+                    </div>
+                    <div class="mb-3">
+                        <label for="description" class="form-label">Deskripsi Materi</label>
+                        <textarea class="form-control" id="description" name="description" rows="3" required></textarea>
+                    </div>
+                    <div class="mb-3">
+                        <label for="category" class="form-label">Kategori</label>
+                        <select class="form-select" id="category" name="category" required>
+                            <option value="Fiction">Fiksi</option>
+                            <option value="Philosophy">Filsafat</option>
+                            <option value="Self-Development">Pengembangan Diri</option>
+                            <option value="Others">Lainnya</option>
+                        </select>
+                    </div>
+                    <div class="mb-3">
+                        <label for="file" class="form-label">Upload File Materi (PDF)</label>
+                        <input type="file" class="form-control" id="file" name="file" accept=".pdf" required>
+                    </div>
+                    <button type="submit" class="btn btn-primary w-100">Upload</button>
+                </form>
             </div>
         </div>
     </div>
-    
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js"></script>
 </body>
 </html>
