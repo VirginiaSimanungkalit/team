@@ -1,0 +1,280 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Kategori Mata Kuliah Ilmu Komputer</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            display: flex;
+            flex-direction: column;
+            min-height: 100vh;
+        }
+        
+        .navbar {
+            height: 100%;
+            width: 0;
+            position: fixed;
+            left: 0;
+            top: 0;
+            background-color: #333;
+            overflow-x: hidden;
+            padding-top: 20px;
+            transition: 0.5s;
+            z-index: 1;
+        }
+        
+        .navbar a {
+            padding: 15px 25px;
+            text-decoration: none;
+            font-size: 18px;
+            color: #888888;
+            display: block;
+            transition: 0.3s;
+        }
+        
+        .navbar a:hover {
+            background-color: #575757;
+            color: white;
+        }
+        
+        .navbar .close-btn {
+            font-size: 16px;
+            position: absolute;
+            top: 10px;
+            right: 10px;
+            color: white;
+            cursor: pointer;
+        }
+        
+        .content {
+            margin-left: 60px;
+            padding: 20px;
+            flex: 1;
+            transition: margin-left 0.3s;
+        }
+        
+        .open-btn {
+            font-size: 24px;
+            cursor: pointer;
+            background-color: #FF8C00;
+            color: white;
+            padding: 8px 12px;
+            border: none;
+            border-radius: 5px;
+            position: fixed;
+            top: 10px;
+            left: 10px;
+            margin-right: 10px;
+            z-index: 2;
+            display: block;
+        }
+        
+        .open-btn:hover {
+            background-color: #e67e00;
+        }
+        
+        .logo-text {
+            font-size: 24px;
+            font-weight: bold;
+            color: #FF8C00;
+            position: fixed;
+            top: 10px;
+            left: 70px;
+            z-index: 2;
+        }
+        
+        .navbar.open+.open-btn {
+            display: none;
+        }
+        
+        .navbar.open~.logo-text {
+            display: none;
+        }
+        
+        .search-container {
+            position: absolute;
+            top: 20px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 100%;
+            max-width: 400px;
+            display: flex;
+            border-radius: 50px;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+            background-color: white;
+        }
+        
+        .search-container input[type="text"] {
+            width: 100%;
+            padding: 10px;
+            border: none;
+            border-radius: 50px 0 0 50px;
+            font-size: 16px;
+            outline: none;
+        }
+        
+        .search-container button {
+            padding: 10px 15px;
+            background-color: #FF8C00;
+            border: none;
+            color: white;
+            font-size: 16px;
+            cursor: pointer;
+            border-radius: 0 50px 50px 0;
+            transition: background-color 0.3s ease;
+        }
+        
+        .search-container button:hover {
+            background-color: #e67e00;
+        }
+        
+        .menu {
+            position: fixed;
+            top: 10px;
+            right: 10px;
+            z-index: 2;
+        }
+        
+        .menu ul {
+            list-style: none;
+            margin: 0;
+            padding: 0;
+            display: flex;
+            align-items: center;
+        }
+        
+        .menu ul li {
+            margin-left: 20px;
+        }
+        
+        .menu ul li a {
+            text-decoration: none;
+            font-size: 16px;
+            color: #888888;
+            font-weight: normal;
+            transition: color 0.3s ease;
+        }
+        
+        .menu ul li a:hover {
+            color: #FF8C00;
+        }
+        
+        footer {
+            background-color: #333;
+            color: white;
+            text-align: center;
+            padding: 10px;
+            position: relative;
+        }
+        
+        @media screen and (max-width: 600px) {
+            .navbar {
+                width: 100%;
+                height: auto;
+                position: relative;
+            }
+            .navbar a {
+                float: left;
+            }
+            .navbar .close-btn {
+                display: none;
+            }
+            .open-btn {
+                position: fixed;
+                top: 10px;
+                left: 10px;
+            }
+            .content {
+                margin-left: 0;
+            }
+            .search-container {
+                width: 90%;
+                top: 10px;
+            }
+        }
+    </style>
+</head>
+
+<body>
+
+    <div id="myNavbar" class="navbar">
+        <a href="javascript:void(0)" class="close-btn" onclick="closeNav()">&times;</a>
+        <a href="#algoritma" onclick="showCategory('Algoritma dan Pemrograman')">Algoritma dan Pemrograman</a>
+        <a href="#struktur" onclick="showCategory('Struktur Data')">Struktur Data</a>
+        <a href="#jaringan" onclick="showCategory('Jaringan Komputer')">Jaringan Komputer</a>
+        <a href="#basisdata" onclick="showCategory('Basis Data')">Basis Data</a>
+        <a href="#ai" onclick="showCategory('Kecerdasan Buatan')">Kecerdasan Buatan</a>
+        <a href="#sistem" onclick="showCategory('Sistem Operasi')">Sistem Operasi</a>
+        <a href="#web" onclick="showCategory('Pemrograman Web')">Pemrograman Web</a>
+        <a href="#kripto" onclick="showCategory('Kriptografi')">Kriptografi</a>
+        <a href="#keamanan" onclick="showCategory('Keamanan Jaringan')">Keamanan Jaringan</a>
+    </div>
+
+    <div class="header">
+        <button class="open-btn" id="openBtn" onclick="openNav()">☰</button>
+        <div id="logoLearnSync" class="logo-text">LearnSync</div>
+
+        <div class="menu">
+            <ul>
+                <li><a href="index.html">Beranda</a></li>
+                <li><a href="upload.html">Upload</a></li>
+
+                <li><a href="ulasan.html">Ulasan</a></li>
+
+            </ul>
+        </div>
+    </div>
+
+    <div class="search-container">
+        <input type="text" placeholder="Search..">
+        <button type="submit">Search</button>
+    </div>
+
+    <div class="content">
+        <h1></h1>
+        <div id="category-content"></div>
+    </div>
+
+    <script>
+        function openNav() {
+            document.getElementById("myNavbar").style.width = "250px";
+            document.querySelector('.content').style.marginLeft = "250px";
+            document.getElementById('openBtn').style.display = 'none';
+            document.getElementById('logoLearnSync').style.display = 'none';
+        }
+
+        function closeNav() {
+            document.getElementById("myNavbar").style.width = "0";
+            document.querySelector('.content').style.marginLeft = "60px";
+            document.getElementById('openBtn').style.display = 'block';
+            document.getElementById('logoLearnSync').style.display = 'block';
+        }
+
+        function showCategory(category) {
+            const contentDiv = document.getElementById('category-content');
+            contentDiv.innerHTML = `<h2>${category}</h2><p>Konten pembelajaran untuk kategori ${category} akan ditampilkan di sini.</p>`;
+        }
+
+        const searchButton = document.querySelector('.search-container button');
+        const searchInput = document.querySelector('.search-container input[type="text"]');
+
+        searchButton.addEventListener('click', function() {
+            const searchTerm = searchInput.value.trim();
+            if (searchTerm) {
+                alert(`Searching for: ${searchTerm}`);
+            } else {
+                alert('Please enter a search term.');
+            }
+        });
+
+        searchInput.addEventListener('keypress', function(event) {
+            if (event.key === 'Enter') {
+                searchButton.click();
+            }
+        });
+    </script>
