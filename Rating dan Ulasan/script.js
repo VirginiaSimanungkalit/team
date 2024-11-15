@@ -1,26 +1,42 @@
-document.addEventListener("DOMContentLoaded", function () {
-    const stars = document.querySelectorAll(".star");
-    let selectedRating = 0;
+document.addEventListener("DOMContentLoaded", function() {
+    const komentarForm = document.getElementById("komentarForm");
+    const daftarKomentar = document.getElementById("daftarKomentar");
 
+    komentarForm.addEventListener("submit", function(e) {
+        e.preventDefault();
+        const komentarText = document.getElementById("komentar").value;
+
+        const komentarItem = document.createElement("div");
+        komentarItem.classList.add("komentar-item");
+        komentarItem.textContent = komentarText;
+
+        daftarKomentar.appendChild(komentarItem);
+        document.getElementById("komentar").value = "";
+    });
+
+    const stars = document.querySelectorAll(".rating .star");
+    let selectedRating = 0;
     stars.forEach(star => {
-        star.addEventListener("click", function () {
+        star.addEventListener("click", function() {
             selectedRating = this.getAttribute("data-value");
             updateStarRating(selectedRating);
         });
 
-        star.addEventListener("mouseover", function () {
+        star.addEventListener("mouseover", function() {
             updateStarRating(this.getAttribute("data-value"));
         });
 
-        star.addEventListener("mouseout", function () {
+        star.addEventListener("mouseout", function() {
             updateStarRating(selectedRating);
         });
     });
 
-    document.getElementById("ulasanForm").addEventListener("submit", function (e) {
+    const ulasanForm = document.getElementById("ulasanForm");
+    const daftarUlasan = document.getElementById("daftarUlasan");
+
+    ulasanForm.addEventListener("submit", function(e) {
         e.preventDefault();
         const ulasanText = document.getElementById("ulasanText").value;
-        const daftarUlasan = document.getElementById("daftarUlasan");
 
         const ulasanItem = document.createElement("div");
         ulasanItem.classList.add("ulasan-item");
